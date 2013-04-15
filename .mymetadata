@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="jsbev_v2.3"
+  id="myeclipse.1366014465457"
+  context-root="/jsbev_v2.3"
+  j2ee-spec="6.0"
+  archive="jsbev_v2.3.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

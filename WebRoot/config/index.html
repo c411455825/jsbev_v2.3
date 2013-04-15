@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <title>SuperMap JavaScrpt Bev</title>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="../demo/uithemes/cupertino/jquery.ui.all.css">
+    <script src="../common/js/jquery-1.8.2.js"></script>
+    <script src="../demo/js/ui/jquery.ui.core.js"></script>
+    <script src="../demo/js/ui/jquery.ui.widget.js"></script>
+    <script src="../demo/js/ui/jquery.ui.button.js"></script>
+    <!--<script src="../js/SuperMap.Include.js"></script>-->
+    <script src="../demo/js/controls/sm_class.js"></script>
+    <script src="../demo/js/controls/sm_loading.js"></script>
+    <script type="text/javascript">
+        window.resizeFunctions = [];
+        $(document).ready(function(){
+
+        })
+    </script>
+</head>
+<body>
+    <div id="toolbar"></div>
+    <div id="map">
+        <iframe id="mapFrame" height="100%" width="100%" src="../config.jsp"></iframe>
+    </div>
+</body>
+<script src="js/main.js"></script>
+<script type="text/javascript">
+    //window.SMPage = "1";
+    (function(){
+        var a = function(){
+            var b = document.body;
+            var a = b.clientHeight;
+            var c = window.resizeFunctions;
+            for(var i=0;i< c.length;c++){
+                if(c[i]){
+                    try{c[i](a);}catch(e){}
+                }
+            }
+        }
+        //window.setTimeout(a,500);
+        a();
+        if(window.addEventListener){
+            window.addEventListener("resize",a);
+        }
+        else{
+            window.attachEvent("onresize",a);
+        }
+    })();
+</script>
+</html>
