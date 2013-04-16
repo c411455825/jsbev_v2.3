@@ -20,35 +20,35 @@ if("".equals(mapCtrl)){
 	case 3://google
 %>
 	<script src="http://maps.google.com/maps/api/js?v=3.5&amp;sensor=false"></script>
-	<script src="lib/extend/SphericalMercator.js"></script>
-	<script src="lib/extend/EventPane.js"></script>
-	<script src="lib/extend/FixedZoomLevels.js"></script>
-	<script src="lib/extend/Google.js"></script>
-	<script src="lib/extend/Google.v3.js"></script>
+	<script src="demo/libs/layer/SphericalMercator.js"></script>
+	<script src="demo/libs/layer/EventPane.js"></script>
+	<script src="demo/libs/layer/FixedZoomLevels.js"></script>
+	<script src="demo/libs/layer/Google.js"></script>
+	<script src="demo/libs/layer/v3.js"></script>
 <%
 	break;
 	case 4://openstreet
 %>
-	<script src="lib/extend/OSM.js"></script>
+	<script src="demo/libs/layer/OSM.js"></script>
 <%
 	break;
 	case 5://tianditu
 %>
-	<script src="lib/extend/Tianditu.js"></script>
+	<script src="demo/libs/layer/Tianditu.js"></script>
 <%
 	case 6://arcgis
 %>
-	<script src="lib/extend/ArcGIS93Rest.js"></script>
+	<script src="demo/libs/layer/ArcGIS93Rest.js"></script>
 <%
 	break;
 	case 7://baidu
 %>
-	<script src="lib/extend/Baidu.js"></script>
+	<script src="demo/libs/layer/Baidu.js"></script>
 <%
 	break;
 	case 8://bing
 %>
-	<script src="lib/extend/Bing.js"></script>
+	<script src="demo/libs/layer/Bing.js"></script>
 <%
 	break;
   }

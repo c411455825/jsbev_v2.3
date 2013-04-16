@@ -77,7 +77,7 @@ public class PageFactory {
 			this.controls(map);
 			this.newLayers(map);
 			this.setCenterStr(map);
-			this.menuStr(demo);
+			this.menuStr(demo,template);
 			
 			this.variableArr.add("map");
 			this.variableArr.add("myWidgetControl");
@@ -89,7 +89,7 @@ public class PageFactory {
 		}
 	}
 
-	private void menuStr(JSONObject demo) {
+	private void menuStr(JSONObject demo,String templete) {
 		try {
 			JSONArray menus = demo.getJSONArray("widgets");
 			String str = "";
@@ -100,7 +100,7 @@ public class PageFactory {
 					JSONObject m = menus.getJSONObject(i);
 					String basePath = Commen.getPath(this);
 
-					String path = basePath + "models/" + m.getString("path");
+					String path = basePath + "factory/models/"+templete+"/" + m.getString("path");
 					String tp;
 
 					tp = FileManger.readTxt(path);
@@ -247,7 +247,7 @@ public class PageFactory {
 
 		String basePath = Commen.getPath(this);
 
-		String path = basePath + "factory/templete/" + name + ".html";
+		String path = basePath + "factory/templete/" + name;
 		templateJS = FileManger.readTxt(path);
 
 		return templateJS;

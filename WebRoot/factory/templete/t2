@@ -8,14 +8,14 @@
 	<script src="./js/jquery-1.8.2.js"></script>
     <script src="./js/demo2/bev_main.js"></script>
     <!--
-     //åˆå§‹åŒ–bevæ¡†æž¶ï¼Œ
+     //³õÊ¼»¯bev¿ò¼Ü£¬
     SuperMap.Bev.Main.init(function(){
-            //é¡µé¢ä»£ç éœ€è¦æ”¾å…¥å…¶å›žè°ƒå‡½æ•°ä¸­
+            //Ò³Ãæ´úÂëÐèÒª·ÅÈëÆä»Øµ÷º¯ÊýÖÐ
 
 
-            //è®¾ç½®ä¸»é¢˜ï¼Œæ”¯æŒçš„ä¸»é¢˜æœ‰baseï¼Œblack-tieï¼Œblitzerï¼Œcupertinoï¼Œdark-hive
-            //dot-luvï¼Œeggplantï¼Œexcite-bikeï¼Œflickï¼Œhot-sneaksï¼Œhumanityï¼Œle-frogï¼Œmint-chocï¼Œovercastï¼Œpepper-grinder
-            //redmondï¼Œsmoothnessï¼Œsouth-streetï¼Œstartï¼Œsunnyï¼Œswanky-purseï¼Œtrontasticï¼Œui-darknessï¼Œui-lightnessï¼Œvader
+            //ÉèÖÃÖ÷Ìâ£¬Ö§³ÖµÄÖ÷ÌâÓÐbase£¬black-tie£¬blitzer£¬cupertino£¬dark-hive
+            //dot-luv£¬eggplant£¬excite-bike£¬flick£¬hot-sneaks£¬humanity£¬le-frog£¬mint-choc£¬overcast£¬pepper-grinder
+            //redmond£¬smoothness£¬south-street£¬start£¬sunny£¬swanky-purse£¬trontastic£¬ui-darkness£¬ui-lightness£¬vader
             SuperMap.Bev.Theme.set("dot-luv");
 
             //your code

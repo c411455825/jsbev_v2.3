@@ -1,0 +1,27 @@
+{
+	"icon":"measure_16_16",
+	"text":"¡ø&nbsp;&nbsp;&nbsp;&nbsp;À„",
+	"events":{
+		"click":function () {
+			if (!myMeasure) {//!myMeasure
+				var dialog = new SuperMap.Bev.Dialog(null, {
+					"icon":"measure_16_16",
+					"text":"¡ø&nbsp;&nbsp;&nbsp;&nbsp;À„"
+				});
+
+				var contentBody = dialog.getContentBody();
+				myMeasure = new SuperMap.Bev.Measure({
+					"body":contentBody,
+					"map":map
+				});
+				dialog.on("dialogclose", function () {
+					if (myMeasure) {
+						myMeasure.destroy();
+						myMeasure = null;
+					}
+				})
+				myWidgetControl.addWidget(dialog);
+			}
+		}
+	}
+}

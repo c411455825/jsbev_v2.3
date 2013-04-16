@@ -11,9 +11,13 @@
         t.toolBarContent = null;
         t.mapFrame = null;
         t.confParam = {
-            "templete":"d1",
-            "theme":"cupertino"
-        }
+            "templete":"t1",
+            "theme":"cupertino",
+            "title":"supermap",
+            "layerType":1,
+            "mapCtrl":"1_2_3",
+            "bevCtrl":"1_2_3"
+        };
         t.lonInput = null;
         t.latInput = null;
         t.levelInput = null;
@@ -30,6 +34,7 @@
         t.createStep2();
         t.createStep3();
         t.createStep4();
+        t.createStep5();
 
         t.setMapStatus();
     }
@@ -145,12 +150,12 @@
         var templeteArr = [
             {
                 "name":"模板一",
-                "value":"d1"
+                "value":"t1"
             }
             ,
             {
                 "name":"模板二",
-                "value":"d2"
+                "value":"t2"
             }
         ];
 
@@ -176,7 +181,7 @@
         },30,150);
     }
     B.createSelectBar = function(div,txtArr,onSelect,height,width){
-        var s1,o1;
+        var s1,o1,me=this;
 
         s1 = $("<select>")
             .css({
@@ -186,10 +191,43 @@
             //.attr({"name":"请选择:"})
             .change(function(onSelect){
                 return function(){
+                    //var t = $(this);
                     onSelect($(this).attr("value"));
+                    $(me.mapFrame).focus();
+//                    window.setTimeout(function(t){
+//                        return function(){
+//
+//                        }
+//                    }(t),30)
                 }
             }(onSelect))
+//            .scroll(function(e){
+//                debugger;
+//                if (e) //停止事件冒泡
+//                    e.stopPropagation();
+//                else
+//                    window.event.cancelBubble = true;
+//                return false;
+//            })
             .appendTo(div);
+//        $(document).click(function(s1){
+//            return function(){
+//                s1.blur();
+//            }
+//        }(s1));
+//        var scrollFunc=function(e){
+//            if(e)
+//                e.stopPropagation();
+//            else
+//                window.event.cancelBubble = true;
+//            return false;
+//        }
+//
+//        if(s1[0].addEventListener){
+//            s1[0].addEventListener('DOMMouseScroll',scrollFunc,false);
+//        }
+//        s1[0].onmousewheel=scrollFunc;
+
         for(var i=0;i<txtArr.length;i++){
             if(txtArr[i].isTitle){
                 o1 = $("<option>")
@@ -262,7 +300,7 @@
         },30,150);
     }
     B.setDemoPara = function(param){
-        var url = "../demo.jsp?",me=this;
+        var url = "../config.jsp?",me=this;
         var txtArr = [],paramStr;
         if(!this.mapFrame){
             this.mapFrame = document.getElementById("mapFrame");
@@ -518,7 +556,7 @@
     }
     B.getIServerLayersInfo = function(){
         this.iserverLayerInfoLoading.show();
-        var url = window.location.host,t=this;
+        var url = window.iserverPath||window.location.host,t=this;
         url = "http://"+url+"/iserver/services.jsonp";
 
 //        $.ajax({
@@ -716,6 +754,195 @@
             t.confParam.bevCtrl = nameStr;
 
             t.setDemoPara(t.confParam);
+        }
+    }
+    /**
+     * 创建第五步,提交生成页面
+     * */
+    B.createStep5 = function(){
+        var b,d1,d2,me=this;
+
+        b = this.toolBarContent;
+        d1 = $("<div>")
+            .css({
+                "margin":"10px 0px 0px 10px"
+            })
+            .appendTo(b);
+        d2 = $("<button>")
+            .html("生成页面>>")
+            .css({
+                "font-size":"14px"
+            })
+            .button()
+            .click(function(){
+                me.submitPage();
+            })
+            .appendTo(d1);
+    }
+    /**
+     * 提交参数生成页面
+     * */
+    B.submitPage = function(){
+        var p = this.confParam,p1,layerParam,mapControlParam,bevCtrlParam,t1;
+
+        switch(p.layerType){
+            case 1:layerParam = {
+                "type":"cloud"
+            };
+            break;
+            case 2:layerParam = {
+                "type":"tiled",
+                "url":p.url
+            };
+            break;
+            case 3:layerParam = {
+                "type":"google"
+            };
+            break;
+            case 4:layerParam = {
+                "type":"osm"
+            };
+            break;
+            case 5:layerParam = {
+                "type":"tdtlayer"
+            };
+            break;
+            case 6:layerParam = {
+                "type":"arcgis"
+            };
+            break;
+            case 7:layerParam = {
+                "type":"baidu"
+            };
+            break;
+            case 8:layerParam = {
+                "type":"bing"
+            };
+            break;
+        };
+
+        t1 = p.mapCtrl.split("_");
+        mapControlParam = [];
+        for(var i=0;i<t1.length;i++){
+            switch(parseInt(t1[i])){
+                case 1:mapControlParam.push("ScaleLine");break;
+                case 2:mapControlParam.push("PanZoomBar");break;
+                case 3:mapControlParam.push("Navigation");break;
+                case 4:mapControlParam.push("OverviewMap");break;
+            }
+        }
+
+        t1 = p.bevCtrl.split("_");
+        bevCtrlParam = [];
+        for(var i=0;i<t1.length;i++){
+            switch (parseInt(t1[i])){
+                case 1:bevCtrlParam.push({
+                    "id":"measure",
+                    "path":"measure.txt"
+                });break;
+                case 2:bevCtrlParam.push({
+                    "id":"geolocate",
+                    "path":"geolocate.txt"
+                });break;
+                case 3:bevCtrlParam.push({
+                    "id":"drawFeature",
+                    "path":"drawFeature.txt"
+                });break;
+            }
+        }
+
+        p1 = {
+            "map":{
+                "center":p.x+","+ p.y,
+                "zoom":p.z,
+                "layers":[layerParam],
+                "controls":mapControlParam
+            },
+            "demo":{
+                "title":p.title,
+                "template":p.templete,
+                "theme":p.theme,
+                "widgets":bevCtrlParam
+            }
+        };
+        var dataStr = this.jsonToStr1(p1).replace(/'/g,"\"");
+        $.ajax({
+            "data":{
+                "data":dataStr,
+                "m":"newpage"
+            },
+            "dataType":"json",
+            "error":function(){},
+            "success":function(){
+                alert(1)
+            },
+            "type":"POST",
+            "url":"../main"
+        });
+    },
+    B.jsonToStr1 = function(obj) {
+        var objInn = obj;
+        if (objInn == null) {
+            return null;
+        }
+        switch (objInn.constructor) {
+            case String:
+                //s = "'" + str.replace(/(["\\])/g, "\\$1") + "'";   string含有单引号出错
+                objInn = '"' + objInn.replace(/(["\\])/g, '\\$1') + '"';
+                objInn= objInn.replace(/\n/g,"\\n");
+                objInn= objInn.replace(/\r/g,"\\r");
+                objInn= objInn.replace("<", "&lt;");
+                objInn= objInn.replace(">", "&gt;");
+                objInn= objInn.replace(/%/g, "%25");
+                objInn= objInn.replace(/&/g, "%26");
+                return objInn;
+            case Array:
+                var arr = [];
+                for(var i=0,len=objInn.length;i<len;i++) {
+                    arr.push(this.jsonToStr1(objInn[i]));
+                }
+                return "[" + arr.join(",") + "]";
+            case Number:
+                return isFinite(objInn) ? String(objInn) : null;
+            case Boolean:
+                return String(objInn);
+            case Date:
+                var dateStr = "{" + "'__type':\"System.DateTime\"," +
+                    "'Year':" + objInn.getFullYear() + "," +
+                    "'Month':" + (objInn.getMonth() + 1) + "," +
+                    "'Day':" + objInn.getDate() + "," +
+                    "'Hour':" + objInn.getHours() + "," +
+                    "'Minute':" + objInn.getMinutes() + "," +
+                    "'Second':" + objInn.getSeconds() + "," +
+                    "'Millisecond':" + objInn.getMilliseconds() + "," +
+                    "'TimezoneOffset':" + objInn.getTimezoneOffset() + "}";
+                return dateStr;
+            default:
+                if (objInn["toJSON"] != null && typeof objInn["toJSON"] == "function") {
+                    return objInn.toJSON();
+                }
+                if (typeof objInn == "object") {
+                    if (objInn.length) {
+                        var arr = [];
+                        for(var i=0,len=objInn.length;i<len;i++)
+                            arr.push(this.jsonToStr1(objInn[i]));
+                        return "[" + arr.join(",") + "]";
+                    }
+                    var arr=[];
+                    for (attr in objInn) {
+                        //为解决SuperMap.Geometry类型头json时堆栈溢出的问题，attr == "parent"时不进行json转换
+                        if (typeof objInn[attr] != "function" && attr != "CLASS_NAME" && attr != "parent") {
+                            arr.push("'" + attr + "':" + this.jsonToStr1(objInn[attr]));
+                        }
+                    }
+
+                    if (arr.length > 0) {
+                        return "{" + arr.join(",") + "}";
+                    } else {
+                        return "{}";
+                    }
+                }
+                return objInn.toString();
         }
     }
     new A();
