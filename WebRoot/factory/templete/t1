@@ -44,7 +44,7 @@
         {_addlayerfun_}function addLayer(){{_br_}            {_newlayers_addlayer_}{_br_}            {_addlayers_addlayer_}{_br_}            {_setcenter_addlayer_}{_br_}        }{_addlayerfunend_}
         function initDemo(){
             myWidgetControl = new SuperMap.Bev.WidgetControl("#widgetControl");
-
+{_MenuPanel_}
             myMenuPanel = new SuperMap.Bev.MenuPanel($("#toolbar"),{
                 "tree":[
                     {
@@ -58,6 +58,7 @@
                     }
                 ]
             });
+{_MenuPanelend_}
         }
 	</script>
 </head>

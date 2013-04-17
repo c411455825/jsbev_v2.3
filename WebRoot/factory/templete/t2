@@ -1,12 +1,12 @@
 <!DOCTYPE html> 
 <html> 
 	<head> 
-	<title></title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>{_title_}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=gbk">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./js/SuperMap.Include.js"></script>
-	<script src="./js/jquery-1.8.2.js"></script>
-    <script src="./js/demo2/bev_main.js"></script>
+    <script src="demo/libs/SuperMap.Include.js"></script><!--引入SuperMap iClient For JavaScript类库-->
+	<script src="common/js/jquery-1.8.2.js"></script>
+    <script src="demo/js/templete2/bev_main.js"></script><!--引入bev入口脚本-->
     <!--
      //初始化bev框架，
     SuperMap.Bev.Main.init(function(){
@@ -21,29 +21,84 @@
             //your code
         });
     -->
-    {_initscript_}
+    
+    <script>
+        {_variable_}
+        function init() {
+            SuperMap.Bev.Main.init(function(){
+                SuperMap.Bev.Theme.set('{_theme_}');
+                initDemo();
+                
+                map = new SuperMap.Map(
+                    'mapContainer',
+                    {
+                        controls:[
+                            {_controls28_}
+                        ],
+                        units: 'm',
+                        allOverlays: true
+                    }
+                );
+                {_newlayers_init_}
+                {_addlayers_init_}
+                {_setcenter_init_}
+            })
+        }
+		{_addlayerfun_}function addLayer(){{_br_}            {_newlayers_addlayer_}{_br_}            {_addlayers_addlayer_}{_br_}            {_setcenter_addlayer_}{_br_}        }{_addlayerfunend_}
+        var myMeasure,myTooltip,myGeolocate,myDrawFeature;
+        function initDemo(){
+{_icons12_}
+
+            var accParam = [
+				{
+					"title":"查询",
+					"body":$("<p>this is a examples</p><br><p>this is a examples</p><br><p>this is a examples</p>")
+				},
+				{
+					"title":"分析",
+					"body":$("<p>this is a examples</p><br><p>this is a examples</p><br><p>this is a examples</p>")
+				},
+				{
+					"title":"专题图",
+					"body":$("<p>this is a examples</p><br><p>this is a examples</p><br><p>this is a examples</p>")
+				},
+				{
+					"title":"公交查询",
+					"body":$("<p>this is a examples</p><br><p>this is a examples</p><br><p>this is a examples</p>")
+				}
+			];
+			
+{_accordions12_}
+			
+            var myAccordion = new SuperMap.Bev.Accordion($("#left_menu"),accParam);
+
+            SuperMap.Bev.DemoUtil.toolBarHideBtn($("#bd_left"),$("#bd_right"));
+        }
+        
+
+    </script>
     </head>
 <body onload="init()" style="position: absolute;width: 100%;height: 100%;">
 <!--[if IE 7]><div style="position: absolute;width: 100%;height: 100%;overflow: hidden;"><![endif]-->
-    <div id="head" class="background_1">
+    <div id="head" class="background_1"><!--标题栏-->
         <span id="logo" class="inline_block"></span>
     </div>
     <div id="bev_bd">
-        <div id="bd_left" class="floatl">
+        <div id="bd_left" class="floatl"><!--地图左侧工具栏-->
             <div id="left_back"></div>
             <div class="bd_left_d0"><span id="left_menu" class="bdleft_d1 inline_block">test</span></div>
         </div>
         <div id="bd_right" class="">
-            <div id="bd_toolbar" class="bd_toolbar">
+            <div id="bd_toolbar" class="bd_toolbar"><!--地图上边的一些工具按钮-->
                 <div id="toolbar_back"></div>
             </div>
-            <div id="mapContainer" class="bd_map" style="border: 0px solid #000;"></div>
+            <div id="mapContainer" class="bd_map" style="border: 0px solid #000;"></div><!--地图区域-->
         </div>
     </div>
 <!--[if IE 7]></div><![endif]-->
 </body>
 <script type="text/javascript">
-    (function(){
+    (function(){//控制页面的自适应
         window.resizeFunctions = [];
         var a = function(){
             var b = document.body;

@@ -77,7 +77,8 @@ public class PageFactory {
 			this.controls(map);
 			this.newLayers(map);
 			this.setCenterStr(map);
-			this.menuStr(demo,template);
+			if(template.equals("t1"))this.menuStr(demo,template);
+			if(template.equals("t2"))this.t2ControlStr(demo,template);
 			
 			this.variableArr.add("map");
 			this.variableArr.add("myWidgetControl");
@@ -86,6 +87,7 @@ public class PageFactory {
 			variableJsStr = "var " + variableJsStr + ";";
 			this.htmlStr = this.htmlStr.replaceAll("\\{_variable_\\}", variableJsStr);
 			this.htmlStr = this.htmlStr.replaceAll("\\{_br_\\}", "\n");
+			this.htmlStr = this.htmlStr.replaceAll("\\{_[0-9a-zA-Z]*_\\}", " ");
 		}
 	}
 
@@ -117,6 +119,69 @@ public class PageFactory {
 				
 				str = Commen.join(menusJsArr, ",\n");
 				this.htmlStr = this.htmlStr.replaceAll("\\{_menus(\\d+)_\\}", str);
+			}
+			else{
+				this.htmlStr = this.htmlStr.replaceAll("\\{_MenuPanel_\\}(.|\n)*\\{_MenuPanelend_\\}", " ");
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private void t2ControlStr(JSONObject demo,String templete){
+		try {
+			JSONArray menus = demo.getJSONArray("widgets");
+			String str = "";
+			ArrayList iconsJsArr = new ArrayList();
+			ArrayList accordionsJsArr = new ArrayList();
+			if (!menus.isEmpty()) {
+				//int bkNum = this.getBankNums("\\{_menus(\\d+)_\\}");
+				for (int i = 0; i < menus.size(); i++) {
+					JSONObject m = menus.getJSONObject(i);
+					String basePath = Commen.getPath(this);
+
+					String path = basePath + "factory/models/"+templete+"/" + m.getString("path");
+					String tp;
+
+					tp = FileManger.readTxt(path);
+					String id = m.getString("id");
+					int bkNum = 0;
+					String variableStr = null;
+					if(id.equals("measure")||id.equals("geolocate")){
+						bkNum = this.getBankNums("\\{_icons(\\d+)_\\}");
+						String bankStr = this.getBanks(bkNum);
+						tp = bankStr + tp;
+						tp = tp.replaceAll("\n", "\n" + bankStr);
+						
+						variableStr = "my" + Commen.upFirstLetter(id);
+						
+						iconsJsArr.add(tp);
+					}
+					else{
+						bkNum = this.getBankNums("\\{_accordions(\\d+)_\\}");
+						String bankStr = this.getBanks(bkNum);
+						tp = bankStr + tp;
+						tp = tp.replaceAll("\n", "\n" + bankStr);
+						
+						variableStr = "my" + Commen.upFirstLetter(id);
+						
+						accordionsJsArr.add(tp);
+					}
+					
+					this.variableArr.add(variableStr);
+				}
+				
+				str = Commen.join(iconsJsArr, "\n");
+				this.htmlStr = this.htmlStr.replaceAll("\\{_icons(\\d+)_\\}", str);
+				
+				str = Commen.join(accordionsJsArr, "\n");
+				this.htmlStr = this.htmlStr.replaceAll("\\{_accordions(\\d+)_\\}", str);
+			}
+			else{
+				this.htmlStr = this.htmlStr.replaceAll("\\{_icons(\\d+)_\\}", " ");
+				
+				this.htmlStr = this.htmlStr.replaceAll("\\{_accordions(\\d+)_\\}", " ");
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
@@ -282,6 +347,9 @@ public class PageFactory {
 				}
 			}
 			this.htmlStr = this.htmlStr.replaceAll("\\{_controls\\d+_\\}", str);
+		}
+		else{
+			this.htmlStr = this.htmlStr.replaceAll("\\{_controls\\d+_\\}", " ");
 		}
 	}
 

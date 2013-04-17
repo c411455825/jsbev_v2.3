@@ -28,6 +28,7 @@
         t.isGetIServerLayerInfo = false;
         t.iserverLayerInfoSelectBar = null;
         t.requestsObj = {};
+        t.zoomBarCheckBox = null;
         //t.isReLoadDemo = false;
         t.createToolbar();
         t.createStep1();
@@ -151,11 +152,14 @@
             {
                 "name":"模板一",
                 "value":"t1"
-            }
-            ,
+            },
             {
                 "name":"模板二",
                 "value":"t2"
+            },
+            {
+                "name":"模板三",
+                "value":"t3"
             }
         ];
 
@@ -176,7 +180,20 @@
 
         this.createSelectBar(d1,templeteArr,function(txt){
             t.confParam.templete = txt;
-
+            if(txt=="t3"){
+                t.zoomBarCheckBox
+                    .attr({
+                        "disabled":true,
+                        "checked":"none"
+                    });
+            }
+            else{
+                t.zoomBarCheckBox
+                    .attr({
+                        "disabled":true,
+                        "checked":"none"
+                    });
+            }
             t.setDemoPara(t.confParam);
         },30,150);
     }
@@ -448,9 +465,9 @@
                 "margin":"10px 0px 0px 10px"
             })
             .appendTo(b);
-
+        this.zoomBarCheckBox = this.createCheckBox("缩放控件",true,d1,checkBoxChange);
         this.mapControlCheckBoxes.push([this.createCheckBox("比例尺",true,d1,checkBoxChange),1]);
-        this.mapControlCheckBoxes.push([this.createCheckBox("缩放控件",true,d1,checkBoxChange),2]);
+        this.mapControlCheckBoxes.push([this.zoomBarCheckBox,2]);
         this.mapControlCheckBoxes.push([this.createCheckBox("导航控件",true,d1,checkBoxChange),3]);
         this.mapControlCheckBoxes.push([this.createCheckBox("鹰眼",false,d1,checkBoxChange),4]);
 
@@ -874,7 +891,7 @@
             "dataType":"json",
             "error":function(){},
             "success":function(){
-                alert(1)
+                window.location = "../demo.html";
             },
             "type":"POST",
             "url":"../main"

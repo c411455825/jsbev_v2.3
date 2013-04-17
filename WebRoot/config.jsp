@@ -2,7 +2,7 @@
 <%
 String templete = (String) request.getParameter("templete");
 if(templete == null){
-	templete = "d1";
+	templete = "t1";
 }
 //String path = request.getRealPath("/");
 //path += "config\\templete\\" + templete+".jsp";

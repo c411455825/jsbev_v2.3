@@ -1,0 +1,9 @@
+myDrawFeature = new SuperMap.Bev.DrawFeature({
+	"body":\$("<div>")
+});
+var drawFeatureBody = myDrawFeature.body;
+accParam.unshift({
+	"title":"»æÖÆ",
+	"body":drawFeatureBody
+});
+window.setTimeout(function(){myDrawFeature.setMap(map);},30);
