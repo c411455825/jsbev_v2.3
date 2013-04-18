@@ -22,19 +22,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="main.js" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="194" column="23" selection-start="5135" selection-end="5135" vertical-scroll-proportion="0.600939">
+            <state line="41" column="24" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="10" selection-start="866" selection-end="866" vertical-scroll-proportion="-12.892858">
+            <state line="54" column="7" selection-start="1812" selection-end="1812" vertical-scroll-proportion="0.82159626">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="style.css" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/css/style.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="13" selection-start="167" selection-end="170" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -51,8 +60,8 @@
     <option name="changedFiles">
       <list>
         <option value="$PROJECT_DIR$/config.jsp" />
-        <option value="$PROJECT_DIR$/config/index.html" />
         <option value="$PROJECT_DIR$/config/js/main.js" />
+        <option value="$PROJECT_DIR$/config/index.html" />
       </list>
     </option>
   </component>
@@ -114,25 +123,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="WebRoot" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
+              <option name="myItemId" value="demo" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -164,6 +155,10 @@
     <list size="0" />
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="StructureViewFactory">
+    <option name="AUTOSCROLL_MODE" value="false" />
+    <option name="ACTIVE_ACTIONS" value="SHOW_INHERITED" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="dae47798-43a2-4377-99ff-df104d088b10" name="Default" comment="" />
@@ -179,7 +174,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16521107" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20014556" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.20742358" sideWeight="0.5" order="1" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -255,16 +250,23 @@
         <state line="12" column="0" selection-start="420" selection-end="420" vertical-scroll-proportion="0.3480916" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/index.html">
+    <entry file="file://$PROJECT_DIR$/config/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="10" selection-start="866" selection-end="866" vertical-scroll-proportion="-12.892858">
+        <state line="10" column="13" selection-start="167" selection-end="170" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/config/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="194" column="23" selection-start="5135" selection-end="5135" vertical-scroll-proportion="0.600939">
+        <state line="41" column="24" selection-start="1089" selection-end="1089" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="54" column="7" selection-start="1812" selection-end="1812" vertical-scroll-proportion="0.82159626">
           <folding />
         </state>
       </provider>

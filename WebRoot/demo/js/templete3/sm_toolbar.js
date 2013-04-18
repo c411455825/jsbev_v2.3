@@ -266,7 +266,6 @@
                             }
 
                             if(menu){
-                                log.print("mouseover btn");
                                 menu.body.css({
                                     "display":"block"
                                 });
@@ -287,10 +286,8 @@
                         }
 
                         if(menu){
-                            log.print("mouseout from btn");
                             menu.hiddenTimeout = window.setTimeout(function(menu){
                                 return function(){
-                                    log.print("hide menu by btn");
                                     menu.body.css({
                                         "display":"none"
                                     });
@@ -343,15 +340,12 @@
 
 //                    menu.body.mousemove(function(menu){
 //                        return function(){
-//                            log.print("mouseover menu");
 //                            if(menu.hiddenTimeout)window.clearTimeout(menu.hiddenTimeout);
 //                        }
 //                    }(menu))
 //                        .mouseout(function(menu){
 //                            return function(){
-//                                log.print("mouseout menu");
 //                                menu.hiddenTimeout = window.setTimeout(function(){
-//                                    log.print("hide menu by menu");
 //                                    menu.body.css({
 //                                        "display":"none"
 //                                    });

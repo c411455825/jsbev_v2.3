@@ -1,0 +1,30 @@
+{
+	"icon":"draw_16_16",
+	"text":"»æ&nbsp;&nbsp;&nbsp;&nbsp;ÖÆ",
+	"events":{
+		"click":function () {
+			if (!myDrawFeature) {
+				var dialog = new SuperMap.Bev.Dialog(null, {
+					"icon":"draw_16_16",
+					"text":"»æ&nbsp;&nbsp;&nbsp;&nbsp;ÖÆ"
+				});
+
+				var contentBody = dialog.getContentBody();
+				myDrawFeature = new SuperMap.Bev.DrawFeature({
+					"body":contentBody,
+					"map":map,
+					"pointIcon":"demo/img/drawpoint_16_16_t3.png",
+					"lineIcon":"demo/img/drawline_16_16_t3.png",
+					"areaIcon":"demo/img/drawarea_16_16_t3.png",
+					"clearIcon":"demo/img/clear_16_16_t3.png"
+				});
+				dialog.on("dialogclose", function () {
+					if (myDrawFeature) {
+						myDrawFeature.destroy();
+						myDrawFeature = null;
+					}
+				})
+			}
+		}
+	}
+}

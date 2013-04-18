@@ -184,16 +184,17 @@
                 t.zoomBarCheckBox
                     .attr({
                         "disabled":true,
-                        "checked":"none"
+                        "checked":false
                     });
             }
             else{
                 t.zoomBarCheckBox
                     .attr({
-                        "disabled":true,
-                        "checked":"none"
+                        "disabled":false,
+                        "checked":"checked"
                     });
             }
+            t.confParam.mapCtrl = t.getMapCtrlsStr();
             t.setDemoPara(t.confParam);
         },30,150);
     }
@@ -352,7 +353,10 @@
             })
             .appendTo(b);
 
-        t.createInput(d1,"地图名称:","SuperMap");
+        t.createInput(d1,"地图名称:","SuperMap",null,null,null,function(value){
+            value = value||"";
+            t.confParam.title = value;
+        });
 
         d1 = $("<div>")
             .html("选择地图服务:")
@@ -472,30 +476,34 @@
         this.mapControlCheckBoxes.push([this.createCheckBox("鹰眼",false,d1,checkBoxChange),4]);
 
         function checkBoxChange(){
-            var bs = t.mapControlCheckBoxes;
-            var names = [];
-            var nameStr = "";
-            for(var i=0;i<bs.length;i++){
-                var isChecked = (bs[i][0].attr("checked")=="checked");
-                var id = bs[i][1];
-
-                if(isChecked){
-                    names.push(id);
-                }
-            }
-
-            if(names.length>0){
-                nameStr = names.join("_");
-            }
-            else{
-                nameStr = "0";
-            }
-            t.confParam.mapCtrl = nameStr;
+            t.confParam.mapCtrl = t.getMapCtrlsStr();
 
             t.setDemoPara(t.confParam);
         }
     }
-    B.createInput = function(container,title,defaultContent,width1,width2,isDisable){
+    B.getMapCtrlsStr = function(){
+        var bs = this.mapControlCheckBoxes;
+        var names = [];
+        var nameStr = "";
+        for(var i=0;i<bs.length;i++){
+            var isChecked = (bs[i][0].attr("checked")=="checked");
+            var id = bs[i][1];
+
+            if(isChecked){
+                names.push(id);
+            }
+        }
+
+        if(names.length>0){
+            nameStr = names.join("_");
+        }
+        else{
+            nameStr = "0";
+        }
+
+        return nameStr;
+    }
+    B.createInput = function(container,title,defaultContent,width1,width2,isDisable,keyup){
         var d0,d1;
 
         d0 = $("<span>")
@@ -519,9 +527,18 @@
                 "margin-right":"5px"
             })
             .appendTo(container);
+
         if(isDisable)d1.attr({
             "disabled":"disabled"
         });
+
+        if(keyup){
+            d1.keyup(function(keyup){
+                return function(){
+                    keyup($(this).attr("value"));
+                }
+            }(keyup));
+        }
 
         return [d0,d1];
     }
@@ -961,6 +978,36 @@
                 }
                 return objInn.toString();
         }
+    }
+    /**
+     * 设置缩放按钮状态
+     * */
+    B._setZoomBarCtrlParam = function(status){//true or false
+        var pStr = this.confParam.mapCtrl;
+        if(!pStr){
+            pStr = "2";
+        }
+        else{
+            if(pStr.indexOf("2")<0){
+                if(status){
+                    var pArr = pStr.split("_");
+                    pArr.push("2");
+                    pStr = pArr.join("_");
+                }
+            }
+            else{
+                if(!status){
+                    var pArr = pStr.split("_");
+                    for(var i=0;i<pArr.length;i++){
+                        if(pArr=="2"||pArr==2){
+                            pArr.splice(i);
+                        }
+                    }
+                    pStr = pArr.join("_");
+                }
+            }
+        }
+        this.confParam.mapCtrl = pStr;
     }
     new A();
 })()

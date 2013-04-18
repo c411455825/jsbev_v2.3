@@ -33,12 +33,14 @@
         var a = function(){
             var b = document.body;
             var a = b.clientHeight;
+            var w = b.clientWidth;
             var c = window.resizeFunctions;
             for(var i=0;i< c.length;c++){
                 if(c[i]){
                     try{c[i](a);}catch(e){}
                 }
             }
+            //document.getElementById("map").style.width = (w - 370) + "px";
         }
         //window.setTimeout(a,500);
         a();

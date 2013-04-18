@@ -1,0 +1,114 @@
+<!DOCTYPE html> 
+<html>
+	<head> 
+	<title>{_title_}</title> 
+	<meta http-equiv="Content-Type" content="text/html; charset=gbk">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .measure_16_16 {
+            background: url(demo/img/mesure_16_16_t3.png);
+        }
+
+        .geolocate_16_16 {
+            background: url(demo/img/geolocate_16_16_t3.png);
+        }
+
+        .draw_16_16 {
+            background: url(demo/img/draw_16_16_t3.png);
+        }
+    </style>
+    <script src="demo/libs/SuperMap.Include.js"></script><!--引入SuperMap iClient For JavaScript类库-->
+    <script src="common/js/jquery-1.8.2.js"></script>
+    <script src="demo/js/templete3/bev_main.js"></script>                    <!--引入bev入口脚本-->
+	<!--
+     //初始化bev框架，
+    SuperMap.Bev.Main.init(function(){
+            //页面代码需要放入其回调函数中
+
+
+            //设置主题，支持的主题有base，black-tie，blitzer，cupertino，dark-hive
+            //dot-luv，eggplant，excite-bike，flick，hot-sneaks，humanity，le-frog，mint-choc，overcast，pepper-grinder
+            //redmond，smoothness，south-street，start，sunny，swanky-purse，trontastic，ui-darkness，ui-lightness，vader
+            SuperMap.Bev.Theme.set("dot-luv");
+
+            //your code
+        });
+    -->
+    <script type="text/javascript">
+        {_variable_}
+        function init() {
+            //初始化bev框架，
+            SuperMap.Bev.Main.init(function(){
+                //页面代码需要放入其回调函数中
+
+                //设置主题
+                SuperMap.Bev.Theme.set("{_theme_}");
+
+                initDemo();
+
+                //初始化地图
+                map = new SuperMap.Map('mapContainer',{ controls: [
+					{_controls20_}
+				], units: 'm',allOverlays: true});
+                {_newlayers_init_}
+                {_addlayers_init_}
+                {_setcenter_init_}
+
+                myToolBar.setMap(map);
+            });
+        }
+		{_addlayerfun_}function addLayer(){{_br_}            {_newlayers_addlayer_}{_br_}            {_addlayers_addlayer_}{_br_}            {_setcenter_addlayer_}{_br_}        }{_addlayerfunend_}
+        var myMeasure,myTooltip,myGeolocate,myDrawFeature;
+        function initDemo(){
+		
+            myToolBar = new SuperMap.Bev.ToolBar($("#toolbar"),map,[
+{_MenuPanel_}
+                {
+                    "icon":"demo/img/tool_t3.png",
+                    "title":"基本操作",
+                    "menu":new SuperMap.Bev.Menu(null,{
+                        "tree":[
+{_menus28_}
+						]
+                    })
+                }
+{_MenuPanelend_}
+            ]);
+        }
+    </script>
+</head>
+<body onload="init()" style="position: absolute;height: 100%;width: 100%;">
+    <div id="head"></div>
+    <div id="canvas">
+        <div id="mapContainer"></div>
+        <span id="toolbar"></span>
+    </div>
+</body>
+<script type="text/javascript">
+    (function(){//控制页面的自适应
+        window.resizeFunctions = [];
+        var a = function(){
+            var b = document.body;
+            var a = b.clientHeight;
+            var w = b.clientWidth;
+            var c = window.resizeFunctions;
+            for(var i=0;i< c.length;c++){
+                if(c[i]){
+                    try{c[i]();}catch(e){}
+                }
+            }
+            var d = document.getElementById("canvas");
+//            var d1 = document.getElementById("mapContainer");
+            d.style.height = (a - 80) + "px";//d1.style.height =
+            d.style.width = ( w - 40) + "px";//d1.style.width =
+        }
+        a();
+        if(window.addEventListener){
+            window.addEventListener("resize",a);
+        }
+        else{
+            window.attachEvent("onresize",a);
+        }
+    })();
+</script>
+</html>

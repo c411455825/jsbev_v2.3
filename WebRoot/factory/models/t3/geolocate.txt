@@ -1,0 +1,28 @@
+{
+	"icon":"geolocate_16_16",
+	"text":"定&nbsp;&nbsp;&nbsp;&nbsp;位",
+	"events":{
+		"click":function () {
+			if (!myGeolocate) {
+				var dialog = new SuperMap.Bev.Dialog(null,{
+					"icon":"geolocate_16_16",
+					"text":"定&nbsp;&nbsp;&nbsp;&nbsp;位"
+				});
+
+				var contentBody = dialog.getContentBody();
+				myGeolocate = new SuperMap.Bev.Geolocate({
+					"body":contentBody,
+					"map":map,
+					"locationIcon":"demo/img/geolocate_16_16_t3.png",
+					"clearIcon":"demo/img/clear_16_16_t3.png"
+				});
+				dialog.on("dialogclose", function () {
+					if (myGeolocate) {
+						myGeolocate.destroy();
+						myGeolocate = null;
+					}
+				})
+			}
+		}
+	}
+}

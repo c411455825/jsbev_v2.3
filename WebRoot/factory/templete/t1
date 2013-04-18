@@ -34,7 +34,7 @@
 
                 map = new SuperMap.Map('mapContainer',{controls: [
 {_controls24_}
-                    ], units: 'm'}
+                    ], units: 'm',allOverlays: true}
                 );
                 {_newlayers_init_}
                 {_addlayers_init_}

@@ -1,0 +1,28 @@
+{
+	"icon":"measure_16_16",
+	"text":"¡ø&nbsp;&nbsp;&nbsp;&nbsp;À„",
+	"events":{
+		"click":function () {
+			if (!myMeasure) {//!myMeasure
+				var dialog = new SuperMap.Bev.Dialog(null,{
+					"icon":"measure_16_16",
+					"text":"¡ø&nbsp;&nbsp;&nbsp;&nbsp;À„"
+				});
+
+				var contentBody = dialog.getContentBody();
+				myMeasure = new SuperMap.Bev.Measure({
+					"body":contentBody,
+					"map":map,
+					"distanceIcon":"demo/img/measure_distance_16_16_t3.png",
+					"areaIcon":"demo/img/measureArea_16_16_t3.png"
+				});
+				dialog.on("dialogclose", function () {
+					if (myMeasure) {
+						myMeasure.destroy();
+						myMeasure = null;
+					}
+				})
+			}
+		}
+	}
+}

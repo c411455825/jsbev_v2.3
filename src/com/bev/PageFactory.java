@@ -77,7 +77,7 @@ public class PageFactory {
 			this.controls(map);
 			this.newLayers(map);
 			this.setCenterStr(map);
-			if(template.equals("t1"))this.menuStr(demo,template);
+			if(template.equals("t1")||template.equals("t3"))this.menuStr(demo,template);
 			if(template.equals("t2"))this.t2ControlStr(demo,template);
 			
 			this.variableArr.add("map");
